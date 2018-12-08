@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <style type="text/css">
+        
+        body {
+            text-align: center;
+            margin: auto;
+            background-color: darkcyan;
+        }
+        
+        #calculator {
+            margin: 25vh auto;
+            height: 50vh;
+            width: 50vh;
+            background-color: black;
+        }
+        
+        #screen {
+            height: 20%;
+            width: 98.5%;
+            font-size: 28px;
+            color: black;
+            background-color: darkgray;
+            border: 2px solid black;
+            text-align: left;
+        }
+        
+        #grid-container{
+            height: 70%;
+            display: grid;
+            grid-template-columns: repeat(4, 20%);
+            grid-template-rows: repeat(4, 25%);
+            grid-gap: 4px;
+            justify-content: space-around;
+            
+        }
+        
+        .nu-button {
+            font-size: 20px;
+            background-color: wheat;
+        }
+        
+        .op-button {
+            font-size: 20px;
+            background-color: yellow;
+        }
+        
+        #clear-button {
+            position: relative;
+            top: 50px;
+            width: 6em;
+            height: 2em;
+            font-size: 16px;
+        }
+        
+    </style>
+</head>
+
+<body>
+   
+    <div id="calculator">
+    
+        <div id="screen"></div>
+        
+        <div id="grid-container">
+            <button type="button" name="0" class="nu-button">0</button>
+            <button type="button" name="." class="nu-button">.</button>
+            <button type="button" name="*" class="op-button">*</button>
+            <button type="button" name="/" class="op-button">/</button>
+            
+            <button type="button" name="7" class="nu-button">7</button>
+            <button type="button" name="8" class="nu-button">8</button>
+            <button type="button" name="9" class="nu-button">9</button>
+            <button type="button" name="+" class="op-button">+</button>
+            
+            <button type="button" name="4" class="nu-button">4</button>
+            <button type="button" name="5" class="nu-button">5</button>
+            <button type="button" name="6" class="nu-button">6</button>
+            <button type="button" name="-" class="op-button">-</button>
+            
+            <button type="button" name="1" class="nu-button">1</button>
+            <button type="button" name="2" class="nu-button">2</button>
+            <button type="button" name="3" class="nu-button">3</button>
+            <button type="button" name="=" id="equal" class="op-button">=</button>
+        
+        </div>
+        
+        <button type="button" name="clear" id="clear-button">Clear</button>
+    
+    </div>
+
+    
+    
+    <script type="text/javascript">
+        
+        var doc = document.getElementById("screen");
+        
+        var but = document.getElementsByTagName("button");
+        
+        var empty = "";
+        
+        /*window.onload = function () {
+            var navigation = document.getElementById("grid-container");
+            navigation.onclick = function () {
+                
+            }
+            
+             function clickHandler() {
+                doc.contentWindow.document.open();
+                doc.contentWindow.document.append(this.innerHTML);
+                doc.contentWindow.document.close();
+            };
+        };*/
+        function clickHandler() {
+            
+            doc.append(this.innerHTML);
+           
+        };
+        
+        for (var i = 0; i < but.length; i++) {
+            but[i].onclick = clickHandler;
+        }
+        
+        
+        var reg = /[-+*\/]/ig;
+        
+        document.getElementById('equal').onclick = function() {
+            
+            if (doc.innerHTML.match(reg)) {
+                
+                var result = eval(doc.innerHTML);
+                doc.innerHTML = result;
+                
+            };
+            
+        };
+        
+         document.getElementById('clear-button').onclick = function () {
+            doc.innerHTML = '';
+        };
+        
+    </script>
+</body>
+
+</html>
