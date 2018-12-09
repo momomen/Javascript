@@ -103,7 +103,7 @@
         
         var but = document.getElementsByTagName("button");
         
-        var empty = "";
+        var gotResult = false;
         
         /*window.onload = function () {
             var navigation = document.getElementById("grid-container");
@@ -119,7 +119,14 @@
         };*/
         function clickHandler() {
             
-            doc.append(this.innerHTML);
+            if (gotResult == false) {
+                
+                doc.append(this.innerHTML);
+            } else {
+                
+                doc.innerHTML = this.innerHTML;
+                gotResult = false;
+            }
            
         };
         
@@ -136,7 +143,7 @@
                 
                 var result = eval(doc.innerHTML);
                 doc.innerHTML = result;
-                
+                gotResult = true;
             };
             
         };
